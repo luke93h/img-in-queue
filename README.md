@@ -1,7 +1,5 @@
 <p align="center">
-  <a href="http://ant.design">
-    <img width="230" src="https://github.com/luke93h/img-in-queue/blob/master/docs/logo.png?raw=true">
-  </a>
+  <img width="230" src="https://github.com/luke93h/img-in-queue/blob/master/docs/logo.png?raw=true">
 </p>
 
 # img-in-queue
@@ -46,6 +44,10 @@
 ![queue](https://github.com/luke93h/img-in-queue/blob/master/assets/queue.png?raw=true) 
 
 第一次加载为后台用new Img()的方式进行请求，第二次则为改变真实dom的src属性时发起的请求，由于存在缓存，请求时间几乎为0。
+
+## 使用方法
+
+
 
 ## 开源协议 
 
