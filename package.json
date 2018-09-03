@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "description": "preloading imgs in queue",
-  "dependencies": {
-  },
+  "dependencies": {},
   "scripts": {
     "build": "./node_modules/.bin/babel --out-dir ./dist ./src/index.js && cp ./src/index.d.ts ./dist/src/ ",
     "start": "antd-tools run start",
@@ -24,19 +23,19 @@
   },
   "devDependencies": {
     "antd-tools": "^5.2.0",
-    "chai": "^4.1.2",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "7.2.3",
+    "babel-jest": "^22.4.3",
     "babel-plugin-react-transform": "^3.0.0",
-    "babel-plugin-transform-react-constant-elements": "^6.5.0",
-    "babel-plugin-transform-react-inline-elements": "^6.6.5",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-plugin-transform-react-constant-elements": "^6.5.0",
+    "babel-plugin-transform-react-inline-elements": "^6.6.5",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "*",
-    "babel-jest": "^22.4.3",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "*",
+    "chai": "^4.1.2",
     "coveralls": "^3.0.1",
     "enzyme": "^3.4.4",
     "enzyme-adapter-react-16": "^1.2.0",
@@ -45,6 +44,7 @@
     "react-dom": "^16.3.2",
     "react-scripts": "^1.1.4",
     "react-test-renderer": "^16.3.2",
-    "regenerator-runtime": "^0.11.1"
+    "regenerator-runtime": "^0.11.1",
+    "tern": "^0.22.0"
   }
 }
