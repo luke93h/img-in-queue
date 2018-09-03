@@ -1,11 +1,9 @@
 {
-  "name": "rectx",
-  "version": "1.3.2",
+  "name": "img-in-queue",
+  "version": "0.0.1",
   "main": "index.js",
-  "description": "React + Context -> Rectx, a light-weight state manager.",
+  "description": "Load imgs in queue",
   "dependencies": {
-    "fast-deep-equal": "^2.0.1",
-    "immer": "^1.5.0"
   },
   "scripts": {
     "build": "./node_modules/.bin/babel --out-dir ./dist ./src/index.js && cp ./src/index.d.ts ./dist/src/ ",
