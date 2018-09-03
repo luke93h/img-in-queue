@@ -2,7 +2,7 @@
   "name": "img-in-queue",
   "version": "0.0.1",
   "main": "index.js",
-  "description": "Load imgs in queue",
+  "description": "preloading imgs in queue",
   "dependencies": {
   },
   "scripts": {
