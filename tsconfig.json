@@ -12,7 +12,8 @@
       "dom",
       "es7"
     ],
-    "declaration": true
+    "declaration": true,
+    "outDir": "./es"
   },
   "exclude": [
     "node_modules",
