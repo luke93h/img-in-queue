@@ -24,7 +24,11 @@
 [download-image]: https://img.shields.io/npm/dm/img-in-queue.svg?style=flat-square
 [download-url]: https://github.com/luke93h/img-in-queue
 
-用于串行预加载的图片中间件组件
+串行预加载图片的中间件组件
+
+## 背景
+
+
 
 ## 开源协议 
 
