@@ -1,3 +1,8 @@
+<p align="center">
+  <a href="http://ant.design">
+    <img width="230" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg">
+  </a>
+</p>
 # img-in-queue
 
 [![NPM version][npm-image]][npm-url]
