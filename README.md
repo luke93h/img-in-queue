@@ -1,7 +1,5 @@
 <p align="center">
-  <a href="http://ant.design">
-    <img width="230" src="https://github.com/luke93h/img-in-queue/blob/master/docs/logo.png?raw=true">
-  </a>
+  <img width="230" src="https://github.com/luke93h/img-in-queue/blob/master/docs/logo.png?raw=true">
 </p>
 
 # img-in-queue

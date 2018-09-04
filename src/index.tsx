@@ -1,6 +1,18 @@
 import React from 'react';
 
-class Index extends React.Component {
+
+export interface ImgProps {
+  src: string;
+  id: string | number;
+  defaultSrc?:  string;
+}
+
+export interface QueueProps {
+  imgs: ImgProps[];
+  defaultSrc?: string;
+}
+
+class Index extends React.Component<QueueProps, {}> {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,13 +26,12 @@ class Index extends React.Component {
     this.preloadImgs(imgs);
   }
   preloadImgs = imgs => {
-    let {  srcName = 'src', keyName = 'id' } = this.props;
     imgs.forEach(img => {
-      let { [keyName]: id } = img;
+      let { id } = img;
       if (this.state.loaded[id]) {
         return;
       }
-      if (this.imgs.some(item => item[keyName] === img[keyName])) {
+      if (this.imgs.some(item => item.id === img.id)) {
         return;
       }
       this.imgs.push(img);
@@ -31,14 +42,13 @@ class Index extends React.Component {
     });
   };
   preload = index => {
-    let {  srcName = 'src', keyName = 'id' } = this.props;
     index = index || 0;
     if (index >= this.imgs.length) {
       this.preloading = false;
       return false;
     }
     this.preloading = true;
-    let { [keyName]: id } = this.imgs[index];
+    let { id } = this.imgs[index];
     let oImg = new Image();
     oImg.onload = () => {
       this.setState({
@@ -55,8 +65,8 @@ class Index extends React.Component {
     oImg.src = this.imgs[index].src;
   };
   render() {
-    let { imgs, defaultSrc = '', srcName = 'src', keyName = 'id' } = this.props;
-    let imgs=imgs.map(item => ({ ...item, [srcName]: this.state.loaded[item[keyName]] ? item[srcName] : defaultSrc }))
+    let { imgs, defaultSrc = '' } = this.props;
+    imgs = imgs.map(item => ({ ...item, src: this.state.loaded[item.id] ? item.src : (item.defaultSrc || defaultSrc) }))
     return this.props.children(imgs)
   }
 }
