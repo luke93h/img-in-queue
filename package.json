@@ -1,25 +1,13 @@
 {
   "name": "img-in-queue",
-  "version": "0.0.1",
-  "main": "index.js",
-  "description": "preloading imgs in queue",
+  "version": "0.0.5",
+  "main": "./es/index.jsx",
+  "description": "preload imgs in queue",
   "dependencies": {},
   "scripts": {
     "build": "./node_modules/.bin/babel --out-dir ./dist ./src/index.js && cp ./src/index.d.ts ./dist/src/ ",
     "start": "antd-tools run start",
-    "test": "react-scripts test --env=jsdom",
-    "p": "npm run build && npm publish",
-    "cov": "npm test -- --coverage",
-    "ci": "npm run cov && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "pack": "webpack",
-    "dist": "antd-tools run dist",
-    "compile": "antd-tools run compile",
-    "clean": "antd-tools run clean",
-    "site": "antd-tools run site",
-    "deploy": "antd-tools run update-self && antd-tools run deploy",
-    "just-deploy": "antd-tools run just-deploy",
-    "pub": "antd-tools run update-self && antd-tools run pub",
-    "prepublish": "antd-tools run guard"
+    "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {
     "antd-tools": "^5.2.0",
