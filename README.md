@@ -62,8 +62,6 @@ for(let i = 0; i < 20; i++){
 
 class Index extends React.PureComponent {
   render() {
-    let { imgs, ...rest } = this.props;
-    let Slider = this.props.position === 'right' ? SideSlider : topSlider;
     return (
       <ImgQueue
         imgs={imgs}
