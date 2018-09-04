@@ -47,7 +47,60 @@
 
 ## 使用方法
 
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom'
+import ImgQueue from 'img-in-queue'
 
+let imgs = []
+for(let i = 0; i < 20; i++){
+  imgs.push({
+    id: i,
+    src: `https://github.com/luke93h/img-in-queue/blob/master/assets/1.jpg?raw=true&timestamp=${i}${Date.now()}`
+  })
+}
+
+class Index extends React.PureComponent {
+  render() {
+    let { imgs, ...rest } = this.props;
+    let Slider = this.props.position === 'right' ? SideSlider : topSlider;
+    return (
+      <ImgQueue
+        imgs={imgs}
+        defaultSrc='https://github.com/luke93h/img-in-queue/blob/master/assets/2.jpg?raw=true'
+      >
+        {imgs => (
+          imgs.map(img => (
+            <img src={img.src} key={img.id}></img>
+          ))
+        )}
+      </ImgQueue>
+    );
+  }
+}
+ReactDOM.render(
+  <Index />,
+  mountNode)
+
+```
+
+## API
+
+### ImgInQueue
+
+| 属性        | 说明    |  类型  |  默认值  |
+| :--------:    | :-----:  | :----: |  :----: |
+| imgs        | 图片数组    |  ImgProps[ ]  |  [ ]  |
+| defaultSrc        | 加载未完成时显示的url    |  string  |  ''  |
+
+### Img
+
+
+| 属性        | 说明    |  类型  |  默认值  |
+| :--------:    | :-----:  | :----: |  :----: |
+| src        | 图片src    |  string  |  -  |
+| id        |   图片唯一id    |  string  |  -  |
+| defaultSrc        | 加载未完成时显示的url，优先级比ImgInQueue中的高    |  string  |  -  |
 
 ## 开源协议 
 

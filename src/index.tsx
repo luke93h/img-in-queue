@@ -65,7 +65,7 @@ class Index extends React.Component<QueueProps, {}> {
     oImg.src = this.imgs[index].src;
   };
   render() {
-    let { imgs, defaultSrc = '' } = this.props;
+    let { imgs = [], defaultSrc = '' } = this.props;
     imgs = imgs.map(item => ({ ...item, src: this.state.loaded[item.id] ? item.src : (item.defaultSrc || defaultSrc) }))
     return this.props.children(imgs)
   }
