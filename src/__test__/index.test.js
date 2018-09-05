@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
-import Table from '..';
+import ImgQueue from '..';
 
 describe('load imgs in queue', () => {
   let imgs = [];
@@ -8,12 +8,11 @@ describe('load imgs in queue', () => {
     let name = i % 2 === 0 ? 1 : 2;
     imgs.push({
       id: i,
-      src: `https://github.com/luke93h/img-in-queue/blob/master/assets/name.jpg?raw=true&timestamp=${i}${Date.now()}`,
-      defaultSrc:
-        "https://github.com/luke93h/img-in-queue/blob/master/assets/${name-default}.jpg?raw=true"
+      src: `https://github.com/luke93h/img-in-queue/blob/master/assets/${name}.jpg?raw=true&timestamp=${i}${Date.now()}`,
+      defaultSrc: `https://github.com/luke93h/img-in-queue/blob/master/assets/${name}-default.jpg?raw=true`,
     });
   }
-  function createQueue(props) {
+  function createQueue() {
     return (
       <ImgQueue
         imgs={imgs}
@@ -31,10 +30,8 @@ describe('load imgs in queue', () => {
       </ImgQueue>
     );
   }
-  
   it('should have the right numbers', () => {
     const wrapper = mount(createQueue());
     expect(wrapper.find('img')).toHaveLength(20);
   });
-
 })
