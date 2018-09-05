@@ -3,16 +3,17 @@ import { render, mount } from 'enzyme';
 import ImgQueue from '..';
 
 describe('load imgs in queue', () => {
-  let imgs = [];
-  for (let i = 0; i < 20; i++) {
-    let name = i % 2 === 0 ? 1 : 2;
-    imgs.push({
-      id: i,
-      src: `https://github.com/luke93h/img-in-queue/blob/master/assets/${name}.jpg?raw=true&timestamp=${i}${Date.now()}`,
-      defaultSrc: `https://github.com/luke93h/img-in-queue/blob/master/assets/${name}-default.jpg?raw=true`,
-    });
-  }
-  function createQueue() {
+  function createQueue(num) {
+    
+    let imgs = [];
+    for (let i = 0; i < num; i++) {
+      let name = i % 2 === 0 ? 1 : 2;
+      imgs.push({
+        id: i,
+        src: `https://github.com/luke93h/img-in-queue/blob/master/assets/${name}.jpg?raw=true&timestamp=${i}${Date.now()}`,
+        defaultSrc: `https://github.com/luke93h/img-in-queue/blob/master/assets/${name}-default.jpg?raw=true`,
+      });
+    }
     return (
       <ImgQueue
         imgs={imgs}
@@ -31,7 +32,7 @@ describe('load imgs in queue', () => {
     );
   }
   it('should have the right numbers', () => {
-    const wrapper = mount(createQueue());
+    const wrapper = mount(createQueue(20));
     expect(wrapper.find('img')).toHaveLength(20);
   });
 })
