@@ -3,8 +3,8 @@ import { render, mount } from 'enzyme';
 import ImgQueue from '..';
 
 describe('load imgs in queue', () => {
+  let src1 = 
   function createQueue(num) {
-    
     let imgs = [];
     for (let i = 0; i < num; i++) {
       let name = i % 2 === 0 ? 1 : 2;
@@ -25,6 +25,7 @@ describe('load imgs in queue', () => {
               style={{ width: "100px" }}
               src={img.src}
               key={img.id}
+              id={img.id}
             />
           ))
         }
@@ -33,6 +34,8 @@ describe('load imgs in queue', () => {
   }
   it('should have the right numbers', () => {
     const wrapper = mount(createQueue(20));
-    expect(wrapper.find('img')).toHaveLength(20);
+    expect(wrapper.find('img')).toHaveProperty(src, );
+    expect(wrapper.find('#0')).toHaveProperty(20);
+    expect(wrapper.find('#1')).toHaveProperty(20);
   });
 })
