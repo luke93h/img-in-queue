@@ -19,7 +19,7 @@ describe('load imgs in queue', () => {
       _imgs.push({
         id: i,
         src: `https://test.com/${i}.jpg`,
-        defaultSrc: cancelDefault ? `https://test.com/${i}-default.jpg` : undefined,
+        defaultSrc: cancelDefault ? undefined :  `https://test.com/${i}-default.jpg`,
       });
     }
     return (
@@ -78,8 +78,8 @@ describe('load imgs in queue', () => {
   
   it('img defaultSrc has higher priority', () => {
     const wrapper = mount(createQueue(2, 'https://test.com/default.jpg', false));
-    expect(getWrapperSrc(wrapper.find('#id0'))).toEqual('https://test.com/default.jpg')
-    expect(getWrapperSrc(wrapper.find('#id1'))).toEqual('https://test.com/default.jpg')
+    expect(getWrapperSrc(wrapper.find('#id0'))).toEqual(getSrc(0, true))
+    expect(getWrapperSrc(wrapper.find('#id1'))).toEqual(getSrc(1, true))
   });
   it('load imgs later', () => {
     const wrapper = mount(createQueue(1));
@@ -90,7 +90,7 @@ describe('load imgs in queue', () => {
         wrapper.update()
         expect(wrapper.find('#id0').prop('src')).toEqual(getSrc(0, false))
         resolve()
-      }, 4000)
+      }, 2000)
     })
   });
 
