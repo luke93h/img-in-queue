@@ -15,12 +15,12 @@ export interface QueueProps {
 class Index extends React.Component<QueueProps, {}> {
   constructor(props) {
     super(props);
-    this.state = {
-      loaded: {},
-    };
-    this.imgs = [];
     this.preloadImgs(props.imgs);
   }
+  state = {
+    loaded: {},
+  };
+  imgs = [];
   componentWillReceiveProps(nextProps) {
     let { imgs } = nextProps;
     this.preloadImgs(imgs);

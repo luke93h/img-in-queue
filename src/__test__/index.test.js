@@ -3,39 +3,82 @@ import { render, mount } from 'enzyme';
 import ImgQueue from '..';
 
 describe('load imgs in queue', () => {
-  let src1 = 
+  function getSrc (i, isDefault){
+    if(isDefault){
+      return  `https://test.com/${i}-default.jpg`
+    }
+    return `https://test.com/${i}.jpg`
+  }
+  function getWrapperSrc(wrapper) {
+    return wrapper.prop('src')
+  } 
   function createQueue(num) {
-    let imgs = [];
+    let _imgs = [];
     for (let i = 0; i < num; i++) {
       let name = i % 2 === 0 ? 1 : 2;
-      imgs.push({
+      _imgs.push({
         id: i,
-        src: `https://github.com/luke93h/img-in-queue/blob/master/assets/${name}.jpg?raw=true&timestamp=${i}${Date.now()}`,
-        defaultSrc: `https://github.com/luke93h/img-in-queue/blob/master/assets/${name}-default.jpg?raw=true`,
+        src: `https://test.com/${i}.jpg`,
+        defaultSrc: `https://test.com/${i}-default.jpg`,
       });
     }
     return (
-      <ImgQueue
-        imgs={imgs}
-      >
-        {imgs =>
-          imgs.map(img => (
-            <img
-              alt=""
-              style={{ width: "100px" }}
-              src={img.src}
-              key={img.id}
-              id={img.id}
-            />
-          ))
-        }
-      </ImgQueue>
+      <div>
+        <ImgQueue
+          imgs={_imgs}
+        >
+          {imgs =>{
+            return imgs.map(img => (
+              <img
+                alt=""
+                style={{ width: "100px" }}
+                src={img.src}
+                key={img.id}
+                id={`id${img.id}`}
+              />
+            ))
+          }
+          }
+        </ImgQueue>
+      </div>
     );
   }
+  beforeAll(() => {
+    // Mocking Image.prototype.src to call the onload
+    // callbacks depending on the src passed to it
+    Object.defineProperty(global.Image.prototype, 'src', {
+      set(src) {
+        this._internalSrc = src
+        setTimeout(() => {
+          if(typeof this.onload === 'function'){
+            this.onload()
+          }
+        }, 1000);
+      },
+      get() {
+        return this._internalSrc
+      }
+    });
+  })
   it('should have the right numbers', () => {
     const wrapper = mount(createQueue(20));
-    expect(wrapper.find('img')).toHaveProperty(src, );
-    expect(wrapper.find('#0')).toHaveProperty(20);
-    expect(wrapper.find('#1')).toHaveProperty(20);
+    expect(wrapper.find('img')).toHaveLength(20);
+  });
+  it('initial load should have the default src', () => {
+    const wrapper = mount(createQueue(2));
+    expect(getWrapperSrc(wrapper.find('#id0'))).toEqual(getSrc(0, true))
+    expect(getWrapperSrc(wrapper.find('#id1'))).toEqual(getSrc(1, true))
+  });
+  it('load imgs later', () => {
+    const wrapper = mount(createQueue(1));
+    expect(wrapper.find('img')).toHaveLength(1);
+    expect(wrapper.find('#id0').prop('src')).toEqual(getSrc(0, true))
+    return new Promise(resolve => {
+      setTimeout(() => {
+        wrapper.update()
+        expect(wrapper.find('#id0').prop('src')).toEqual(getSrc(0, false))
+        resolve()
+      }, 4000)
+    })
   });
 })
