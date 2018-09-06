@@ -12,20 +12,21 @@ describe('load imgs in queue', () => {
   function getWrapperSrc(wrapper) {
     return wrapper.prop('src')
   } 
-  function createQueue(num) {
+  function createQueue(num, defaultSrc, cancelDefault) {
     let _imgs = [];
     for (let i = 0; i < num; i++) {
       let name = i % 2 === 0 ? 1 : 2;
       _imgs.push({
         id: i,
         src: `https://test.com/${i}.jpg`,
-        defaultSrc: `https://test.com/${i}-default.jpg`,
+        defaultSrc: cancelDefault ? `https://test.com/${i}-default.jpg` : undefined,
       });
     }
     return (
       <div>
         <ImgQueue
           imgs={_imgs}
+          defaultSrc={defaultSrc}
         >
           {imgs =>{
             return imgs.map(img => (
@@ -64,10 +65,21 @@ describe('load imgs in queue', () => {
     const wrapper = mount(createQueue(20));
     expect(wrapper.find('img')).toHaveLength(20);
   });
-  it('initial load should have the default src', () => {
+  it('test imgs defaultSrc', () => {
     const wrapper = mount(createQueue(2));
     expect(getWrapperSrc(wrapper.find('#id0'))).toEqual(getSrc(0, true))
     expect(getWrapperSrc(wrapper.find('#id1'))).toEqual(getSrc(1, true))
+  });
+  it('test global defaultSrc', () => {
+    const wrapper = mount(createQueue(2, 'https://test.com/default.jpg', true));
+    expect(getWrapperSrc(wrapper.find('#id0'))).toEqual('https://test.com/default.jpg')
+    expect(getWrapperSrc(wrapper.find('#id1'))).toEqual('https://test.com/default.jpg')
+  });
+  
+  it('img defaultSrc has higher priority', () => {
+    const wrapper = mount(createQueue(2, 'https://test.com/default.jpg', false));
+    expect(getWrapperSrc(wrapper.find('#id0'))).toEqual('https://test.com/default.jpg')
+    expect(getWrapperSrc(wrapper.find('#id1'))).toEqual('https://test.com/default.jpg')
   });
   it('load imgs later', () => {
     const wrapper = mount(createQueue(1));
@@ -81,4 +93,5 @@ describe('load imgs in queue', () => {
       }, 4000)
     })
   });
+
 })

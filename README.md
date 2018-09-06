@@ -30,7 +30,7 @@
 
 > chrome浏览器中，http1并发数限制为6，http2则没有并发数限制，[了解更多](https://www.zhihu.com/question/34074946)
 
-![http1](https://github.com/luke93h/img-in-queue/blob/master/assets/http1.jpg?raw=true) 
+![http1](https://github.com/luke93h/img-in-queue/blob/master/assets/http1.png?raw=true) 
 
 ![http2](https://github.com/luke93h/img-in-queue/blob/master/assets/http2.png?raw=true) 
 
