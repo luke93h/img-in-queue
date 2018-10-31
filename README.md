@@ -41,7 +41,6 @@
 1. 串行加载图片，避免因网络分流而导致首张图片加载缓慢
 2. 在后台预加载后面的图片，加载完毕后替换img的src属性
 
-![queue](https://github.com/luke93h/img-in-queue/blob/master/assets/queue.png?raw=true) 
 
 第一次加载为后台用new Img()的方式进行请求，第二次则为改变真实dom的src属性时发起的请求，由于存在缓存，请求时间几乎为0。
 
